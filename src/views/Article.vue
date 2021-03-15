@@ -9,7 +9,7 @@
       <div class="col-md-6">
         <p>{{ Article.description }}</p>
         <hr>
-        <p>Catégorie : {{ Article.category[0] }}</p>
+        <p>Catégorie : {{ Article.category }}</p>
         <p>Publier le : {{ Article.published }}</p>
         <p>Auteur : {{ Article.author }}</p>
         <div class="d-flex justify-content-end">
@@ -41,7 +41,7 @@ export default {
           url: "",
           image: "",
           language: "",
-          category: [],
+          category: [0],
           published: "",
         }
       ],
