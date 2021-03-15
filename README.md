@@ -23,14 +23,31 @@ API utilisée : ```https://api.currentsapi.services/v1/```
 
 # Problèmatique
 
-- **L'API** n'a pas d'`` Endpoint`` afin de récupérer un article par un **ID**
+- **L'API** n'a pas d'``Endpoint`` afin de récupérer un article par un **ID**
 
 Le problème de ne pas avoir un lien pour faire une requête GET et passer en paramètre un ID 
 (Exemple : https://api.currentsapi.services/v1/search?id=7YSH-8AIJJbfr7-0kstzT)
 fait qu'il m'est impossible de récupérer une News spécifique
 
 
-## Optimisation 
+# Optimisation 
 
 - Mettre en cache les **DATA** récupérées = moins de requêtes sur l'API.
 - Mettre un bouton *refresh* pour faire une nouvelle requête.
+
+
+# Deploy.sh
+
+- Déployer dans la branch :
+```sh
+#!/usr/bin/env sh
+
+set -e
+npm run build
+cd dist
+git init
+git add -A
+git commit -m 'deploy'
+git push -f git@github.com:EzHeisenberg/vue-app-2.git master:gh-pages
+cd -
+```

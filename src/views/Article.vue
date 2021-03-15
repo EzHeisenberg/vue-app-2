@@ -1,69 +1,16 @@
 <template>
-  <div class="container">
-    <h3 class="text-center">{{ Article.title }}</h3>
-    <hr>
-    <div class="row">
-      <div class="col-md-6">
-        <img :src="Article.image" alt="" class="img-fluid">
-      </div>
-      <div class="col-md-6">
-        <p>{{ Article.description }}</p>
-        <hr>
-        <p>Catégorie : {{ Article.category }}</p>
-        <p>Publier le : {{ Article.published }}</p>
-        <p>Auteur : {{ Article.author }}</p>
-        <div class="d-flex justify-content-end">
-          <a :href="Article.url" class="btn btn-outline-dark">Voir sur le site</a>
-        </div>
-      </div>
-    </div>
-
+  <div class="article">
+    <Artc/>
   </div>
 </template>
 
 <script>
-import * as axios from "axios";
-
-const apiKey = 'apiKey=7Dtcv7fjRjOKXcmEZvI5_UMUuOSWjzqtwoUXvNhPqA0pR66U'
-
-const apiURL = 'https://api.currentsapi.services/v1/latest-news?' +
-    'language=fr&' + apiKey;
+import Artc from "@/components/Artc";
 
 export default {
-  name: "Article",
-  data: function () {
-    return {
-      Article: [
-        {
-          id: "",
-          title: "",
-          description: "",
-          url: "",
-          image: "",
-          language: "",
-          category: [0],
-          published: "",
-        }
-      ],
-
-    };
-  },
-  created: function () {
-    this.Articlefr()
-  },
-  methods: {
-    Articlefr: async function () {
-      try {
-        const response = await axios.get(apiURL)
-        this.Article = response.data.news[this.$route.params.id];
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  },
+  name: 'Home',
+  components: {
+    Artc,
+  }
 }
 </script>
-
-<style scoped>
-
-</style>
