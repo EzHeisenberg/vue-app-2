@@ -17,10 +17,13 @@
     <div class="row">
       <div class="col-md-6" v-for="(dataNews, index) in News" :key="dataNews.length">
         <div class="card border-secondary mb-3">
-          <b class="card-header">#{{ index }} - {{ dataNews.title }}</b>
+          <b class="card-header">#{{ index+1 }} - {{ dataNews.title }}</b>
           <div class="card-body">
             <p>{{ dataNews.description }}</p>
             <p>- {{ dataNews.author }}</p>
+            <p>Catégorie :
+              <span v-for="(dataCategorie) in dataNews.category" :key="dataCategorie">{{ dataCategorie }} </span>
+            </p>
             <div class="d-flex justify-content-end">
               <router-link :to="{ name: 'Article', params: { id: index }}" class="btn btn-outline-dark">Voir l'article
               </router-link>
@@ -54,7 +57,7 @@ export default {
           url: "",
           image: "",
           language: "",
-          category: "",
+          category: [],
           published: "",
         }
       ],

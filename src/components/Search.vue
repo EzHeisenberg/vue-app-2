@@ -11,7 +11,33 @@
       </div>
     </form>
 
-    <!-- Modal -->
+    <div class="row">
+      <div class="col-md-6" :v-model="News" v-for="(dataNews, index) in News" :key="index+1">
+        <div class="card border-secondary mb-3">
+          <b class="card-header">#{{ index + 1 }} - {{ dataNews.title }}</b>
+          <div class="card-body">
+            <p>{{ dataNews.description }}</p>
+            <p>- {{ dataNews.author }}</p>
+            <p>Catégorie :
+              <span v-for="(dataCategorie) in dataNews.category" :key="dataCategorie">{{ dataCategorie }} </span>
+            </p>
+            <div class="d-flex justify-content-end">
+              <router-link :to="{ name: 'Article', params: { id: index }}" class="btn btn-outline-dark">Voir l'article
+              </router-link>
+              <a :href="dataNews.url" class="btn btn-outline-dark">aller sur le site</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="d-flex justify-content-end">
+      <p>total d'articles : {{ News.length }}</p>
+    </div>
+
+
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -27,29 +53,9 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6" :v-model="News" v-for="(dataNews, index) in News" :key="index+1">
-        <div class="card border-secondary mb-3">
-          <b class="card-header">#{{ index + 1 }} - {{ dataNews.title }}</b>
-          <div class="card-body">
-            <p>{{ dataNews.description }}</p>
-            <p>- {{ dataNews.author }}</p>
-            <div class="d-flex justify-content-end">
-              <router-link :to="{ name: 'Article', params: { id: index }}" class="btn btn-outline-dark">Voir l'article
-              </router-link>
-              <a :href="dataNews.url" class="btn btn-outline-dark">aller sur le site</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <div class="d-flex justify-content-end">
-      <p>total d'articles : {{ News.length }}</p>
-    </div>
-
-
   </div>
+
+
 </template>
 
 <script>
